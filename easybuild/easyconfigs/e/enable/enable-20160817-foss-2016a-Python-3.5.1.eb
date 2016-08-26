@@ -41,7 +41,8 @@ builddependencies = [
     ('xorg-macros', '1.19.0'),
     ('xproto', '7.0.28'),
     ('xtrans', '1.3.5'),
-    ('SWIG', '3.0.10', versionsuffix),
+    #Needs an old version
+    ('SWIG', '3.0.2', versionsuffix),
 ]
 
 dependencies = [

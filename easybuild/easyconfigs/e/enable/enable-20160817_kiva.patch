@@ -1,5 +1,17 @@
 #non-git version (without .git directory) build fails
 #bundled kiva version is tied to enable
+#Somewhere in the code it is buried to read version info from .git directory. 
+#I just made kiva use the version of enable
+#The inspiration was taken from 
+#commit_ids 51e11cc f91c824 https://github.com/enthought/enable
+# https://github.com/enthought/enable/commit/f91c824ebad74e8c23e62fe3390842c5fe322aee
+#https://github.com/enthought/enable/commit/f91c824ebad74e8c23e62fe3390842c5fe322aee
+#Up to now, this commits are only merged to the maintenance 4.5.x branch.
+#if you clone the the git repositiry, you do not need this patch.
+#kiva is icluded as well as agg for kiva in enable.i
+#As far as I know, Enthought does not distribute a standalone kiva,i
+# at the homepage of this package referred to have two parts,
+# enable and kiva (see http://code.enthought.com/projects/enable/)
 #Aug 24th 2016 by B. Hajgato (Free University Brussels - VUB)
 --- enable-168e222dababd4464062eb7a3ab92c4b591f7031/setup.py.org	2016-06-14 15:25:39.000000000 +0200
 +++ enable-168e222dababd4464062eb7a3ab92c4b591f7031/setup.py	2016-08-24 13:50:19.959208391 +0200
