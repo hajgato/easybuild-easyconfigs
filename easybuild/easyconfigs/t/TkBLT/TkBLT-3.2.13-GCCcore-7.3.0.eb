@@ -1,0 +1,36 @@
+easyblock = 'ConfigureMake'
+
+name = 'TkBLT'
+version = '3.2.13'
+tkver = '8.6.8'
+
+homepage = 'https://sourceforge.net/projects/tkblt/'
+description = """TkBLT is a library of extensions to the Tk library. It adds new commands
+ and variables to the application's interpreter. TkBLT is a derived version
+ of the BLT Toolkit by George A. Howlett, for Tcl/Tk 8.5/8.6, is TEA compatible,
+ with full support for MacOSX and Windows, and is fully compatible with the Tk API.
+ TkBLT is released under the original BSD license. TkBLT includes only thei
+ Graph and Barchart Tk widgets, and the Tcl Vector command."""
+
+toolchain = {'name': 'GCCcore', 'version': '7.3.0'}
+
+source_urls = [SOURCEFORGE_SOURCE]
+sources = ['v%(version)s.tar.gz']
+checksums = ['3299ebfe1f80da425937657e952b9b2c86da0014fde7eaf35004b507753e3a6a']
+
+builddependencies = [('binutils', '2.30')]
+
+dependencies = [
+    ('Tcl', '8.6.8'),
+    ('Tk', tkver),
+]
+
+configopts = '--with-tk=$EBROOTTK/lib --with-tkinclude=$EBROOTTK/include --with-tcl=$EBROOTTCL/lib '
+configopts += '--exec-prefix=%(installdir)s '
+
+sanity_check_paths = {
+    'files': ['lib/tkbltConfig.sh'],
+    'dirs': [],
+}
+
+moduleclass = 'vis'

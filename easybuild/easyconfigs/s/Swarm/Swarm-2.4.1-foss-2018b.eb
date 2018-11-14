@@ -1,0 +1,54 @@
+easyblock = 'ConfigureMake'
+
+name = 'Swarm'
+version = '2.4.1'
+bltver = '3.2.13'
+
+homepage = 'http://www.swarm.org/wiki/Swarm:Software_main_page'
+description = """Swarm is a library of object-oriented classes that implements the Swarm conceptual
+ framework for agent-based models and provides many tools for implementing,
+ observing, and conducting experiments on ABMs. Users write their own software but
+ (a) follow Swarm's conceptual framework and conventions to design the software, and
+ (b) use the Swarm libraries to do much of the work."""
+
+toolchain = {'name': 'foss', 'version': '2018b'}
+
+source_urls = ['http://download.savannah.gnu.org/releases/swarm/src/swarm/']
+sources = [SOURCELOWER_TAR_GZ]
+patches = ['%(name)s-%(version)s_tkblt.patch']
+
+dependencies = [
+    ('expat', '2.2.5'),
+    ('HDF5', '1.10.2'),
+#    ('Java', '1.8', '', True),
+    ('libffi', '3.2.1'),
+    ('libpng', '1.6.34'),
+    ('Tcl', '8.6.8'),
+    ('Tk', '8.6.8'),
+    ('TkBLT', bltver),
+    ('X11', '20180604'),
+    ('zlib', '1.2.11'),
+
+]
+
+configopts = '--with-tk=$EBROOTTK/lib '
+configopts += '--with-tcl=$EBROOTTCL/lib '
+configopts += '--with-x=$EBROOTX11 '
+configopts += '--with-xpmdir=$EBROOTX11 '
+configopts += '--with-ffidir=$EBROOTLIBFFI '
+configopts += '--with-zlibdir=$EBROOTZLIB '
+configopts += '--with-pngdir=$EBROOTLIBPNG '
+configopts += '--with-hdf5dir=$EBROOTHDF5 '
+#configopts += '--with-jdkdir=$EBROOTJAVA '
+#configopts += '--disable-jar '
+#configopts += '--without-Java '
+configopts += '--with-expat=$EBROOTEXPAT '
+configopts += '--with-bltdir=$EBROOTTKBLT '
+configopts += '--with-bltlibname=tkblt%s ' % '.'.join(bltver.split('.')[:2])
+
+sanity_check_paths = {
+    'files': ['bin/vsearch'],
+    'dirs': [],
+}
+
+moduleclass = 'bio'

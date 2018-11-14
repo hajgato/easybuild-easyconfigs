@@ -1,0 +1,20 @@
+--- swarm-2.4.1/configure.orig	2011-03-04 18:54:34.000000000 +0100
++++ swarm-2.4.1/configure	2018-11-14 11:23:41.995931179 +0100
+@@ -15664,7 +15664,7 @@
+ test -z "$bltdir" && bltdir=$defaultdir
+ found=no
+ for name in $bltlibname BLTCore30 BLT.2.4 BLT24 BLT8.0 BLT80 BLT; do
+-   for extra_libdir in "$bltdir/lib/shared" "$bltdir/lib" "$bltdir"; do
++   for extra_libdir in "$bltdir/lib/shared" "$bltdir/lib" "$bltdir" "$bltdir/lib/tkblt*"; do
+ 	  libname=$name
+ if test -z "$libname" ; then
+   libname=blt
+@@ -15790,7 +15790,7 @@
+       for dir in $ffidir /usr ; do
+         ffidir_expand=`eval echo $dir`
+ 	for suffix in .dylib .so .sl .la; do
+-		for subdir in /lib /; do
++		for subdir in /lib64 /lib /; do
+ 			if test -f $ffidir_expand$subdir/libffi$suffix ; then
+ 			  FFILDFLAGS="-L\${ffilibdir} -R \${ffilibdir}"
+ 			  { $as_echo "$as_me:$LINENO: result: $ffidir_expand$subdir/libffi${suffix}" >&5
